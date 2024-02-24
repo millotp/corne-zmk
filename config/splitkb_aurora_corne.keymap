@@ -10,7 +10,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-  chain-length = <7>;
+  chain-length = <27>;
 };
 
 / {
