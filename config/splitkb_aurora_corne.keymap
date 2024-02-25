@@ -13,16 +13,16 @@
   chain-length = <27>;
 };
 
-behaviors {
-        shfdel: shift_del {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp BSCP>, <&kp DEL>;
-                mods = <MOD_LSFT>;
-        };
-};
-
 / {
+        behaviors {
+                shfdel: shift_del {
+                        compatible = "zmk,behavior-mod-morph";
+                        #binding-cells = <0>;
+                        bindings = <&kp BSCP>, <&kp DEL>;
+                        mods = <MOD_LSFT>;
+                };
+        };
+        
         keymap {
                 compatible = "zmk,keymap";
 
