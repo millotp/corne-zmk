@@ -19,7 +19,7 @@
                         compatible = "zmk,behavior-mod-morph";
                         #binding-cells = <0>;
                         bindings = <&kp BKSP>, <&kp DEL>;
-                        mods = <MOD_LCTRL>;
+                        mods = <MOD_LCTL>;
                 };
         };      
 
