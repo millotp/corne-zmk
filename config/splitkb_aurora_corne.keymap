@@ -15,13 +15,13 @@
 
 / {
         behaviors {
-                shfdel: shift_del {
+                ctrldel: control_del {
                         compatible = "zmk,behavior-mod-morph";
                         #binding-cells = <0>;
                         bindings = <&kp BKSP>, <&kp DEL>;
-                        mods = <MOD_LSFT>;
+                        mods = <MOD_LCTRL>;
                 };
-        };
+        };      
 
         keymap {
                 compatible = "zmk,keymap";
@@ -33,7 +33,7 @@
 // | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
 //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &shfdel
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &ctrldel
    &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
                   &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
@@ -43,12 +43,12 @@
 // -----------------------------------------------------------------------------------------
 // |   TAB   |    1    |    2    |    3    |    4    |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
 // |   SHFT  |  CALC   |  PAUSE  |   VOL-  |   VOL+  |     |   | LFT | DWN |  UP | RGT |     |      |
-// | RGB_BRD | RGB_BRI | RGB_HUD | RGB_HUI | RGB_EFF |     |   |     |     |     |     |     |      |
+// | RED | BLUE | LIGHT RED | LIGHT BLUE | RGB_EFF |     |   |     |     |     |     |     |      |
 //                               |   GUI   |         | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp TAB         &kp N1          &kp N2          &kp N3          &kp N4          &kp N5    &kp N6   &kp N7   &kp N8  &kp N9    &kp N0 &shfdel
+   &kp TAB         &kp N1          &kp N2          &kp N3          &kp N4          &kp N5    &kp N6   &kp N7   &kp N8  &kp N9    &kp N0 &ctrldel
    &kp LSHFT       &kp C_AL_CALC   &kp C_PP        &kp C_VOL_DN    &kp C_VOL_UP    &trans    &kp LEFT &kp DOWN &kp UP  &kp RIGHT &trans &trans
-   &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_EFF &trans    &trans   &trans   &trans  &trans    &trans &trans
+   &rgb_ug RGB_COLOR_HSB(0, 71, 86) &rgb_ug RGB_COLOR_HSB(180, 90, 90) &rgb_ug RGB_COLOR_HSB(0, 90, 30) &rgb_ug RGB_COLOR_HSB(180, 90, 30) &rgb_ug RGB_EFF &trans    &trans   &trans   &trans  &trans    &trans &trans
                                                    &kp LGUI        &trans          &kp SPACE &kp RET  &trans   &kp RALT
                         >;
                 };
@@ -60,7 +60,7 @@
 // | CTRL |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &shfdel
+   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &ctrldel
    &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
    &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
                              &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
