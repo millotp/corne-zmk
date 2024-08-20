@@ -19,8 +19,8 @@ jobs:
             if (action !== 'opened' && action !== 'reopened') {
               return;
             }
-            const title = context.issue.title;
-            const body = context.issue.body;
+            const title = context.payload.issue.title;
+            const body = context.payload.issue.body;
 
             const res = await fetch('https://algolia.atlassian.net/rest/api/3/issue', {
               method: 'POST',
@@ -36,7 +36,7 @@ jobs:
                       {
                         content: [
                           {
-                            text: `Issue created by ${context.actor} in ${context.payload.repository.full_name} at ${context.payload.issue.html_url}.\n\n${body}`,
+                            text: `Issue created by ${context.actor} at [${context.payload.issue.html_url}](${context.payload.issue.html_url}).\n\n${body}`,
                             type: 'text'
                           }
                         ],
@@ -47,7 +47,7 @@ jobs:
                     version: 1
                   },
                   issuetype: {
-                    id: '10003'
+                    id: '10001'
                   },
                   parent: {
                     key: 'DI-2737'
