@@ -8,14 +8,52 @@ permissions:
   contents: read
 
 jobs:
-  triage:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Create ticket
-        run: |
-          curl --request POST \
-            --url 'https://algolia.atlassian.net/rest/api/3/issue' \
-            --user "${{ secrets.JIRA_TOKEN }}" \
-            --header 'Accept: application/json' \
-            --header 'Content-Type: application/json' \
-            --data '{"fields":{"description":{"content":[{"content":[{"text":"${{ github.event.issue.body }}","type":"text"}],"type":"paragraph"}],"type":"doc","version":1},"issuetype":{"id":"10003"},"parent":{"key":"DI-2737"},"project":{"id":"10118"},"summary":"[APIC] ${{ github.event.issue.title }}"},"update":{}}'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            console.log(JSON.stringify(context, null, 2));
+            const title = context.issue.title;
+            const body = context.issue.body;
+
+            await fetch('https://algolia.atlassian.net/rest/api/3/issue', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${{ secrets.JIRA_TOKEN }}`
+              },
+              body: JSON.stringify({
+                fields: {
+                  description: {
+                    content: [
+                      {
+                        content: [
+                          {
+                            text: `Issue created by ${context.actor} in ${context.payload.repository.full_name}.\n\n${body}`,
+                            type: 'text'
+                          }
+                        ],
+                        type: 'paragraph'
+                      }
+                    ],
+                    type: 'doc',
+                    version: 1
+                  },
+                  issuetype: {
+                    id: '10003'
+                  },
+                  parent: {
+                    key: 'DI-2737'
+                  },
+                  project: {
+                    id: '10118'
+                  },
+                  summary: `[APIC] ${title}`
+                },
+                update: {}
+              })
+            });
