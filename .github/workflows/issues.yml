@@ -1,7 +1,7 @@
 name: 'Issue Sync with Jira'
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   issues: write
@@ -16,7 +16,7 @@ jobs:
         with:
           script: |
             const action = context.payload.action;
-            if (action !== 'opened') {
+            if (action !== 'opened' && action !== 'reopened') {
               return;
             }
             const title = context.issue.title;
