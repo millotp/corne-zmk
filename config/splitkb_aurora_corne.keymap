@@ -7,6 +7,11 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+
+&led_strip {
+    chain-length = <15>;
+};
 
 / {
         behaviors {
@@ -52,12 +57,12 @@
 // -----------------------------------------------------------------------------------------
 // |  TAB |   !   |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
 // | SHFT | BTCLR | BT1 | BT2 | BT3 | BT4 |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | CTRL |       |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+// | CTRL | RBG_TOG | RGB_EFF |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
 //                      | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp  TAB  &kp EXCL   &kp AT       &kp HASH     &kp DLLR     &kp PRCNT    &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &ctrldel
    &kp LSHFT &bt BT_CLR &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LCTRL &trans     &trans       &trans       &trans       &trans       &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+   &kp LCTRL &rgb_ug RGB_TOG &rgb_ug RGB_EFF &trans       &trans       &trans       &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
                                      &kp LGUI     &trans       &kp SPACE    &kp RET   &trans    &kp RALT
                         >;
                 };
